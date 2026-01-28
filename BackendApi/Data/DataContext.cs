@@ -1,7 +1,7 @@
 ﻿﻿using Microsoft.EntityFrameworkCore;
 using WEBAPIDEMO.Models;
 
-namespace PokemonReviewApp.Data
+namespace WEBAPIDEMO.Data
 {
     public class DataContext : DbContext
     {

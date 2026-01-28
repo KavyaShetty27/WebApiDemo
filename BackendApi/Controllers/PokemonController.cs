@@ -1,19 +1,22 @@
-using Microsoft.AspNetCore.Components;
+using     Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using WEBAPIDEMO.Interfaces;
 using WEBAPIDEMO.Models;
+
+//using WEBAPIDEMO.Models;
 
 namespace WEBAPIDEMO.Controllers
 {
     [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]// defines the url pattern 
         [ApiController]// API specific validation , a mandatory for webapis                                //--- these are the attributes , controller setup 
-            public class PokemonController: Controller // this is an mvc controller 
+            public class PokemonController : Controller// this is an mvc controller 
                 {
-                    private readonly IPokemonRepository _pokemonRepository;
-                public PokemonController(IPokemonRepository pokemonRepository)
+                    private readonly IPokemonRepository _pokemonRepository;// This controller has a private, safe reference to something that knows how to work with Pokémon data.
+                public PokemonController(IPokemonRepository pokemonRepository)// this is a constructor, showing dependecy inkection
                 {
-                    _pokemonRepository = pokemonRepository;
+                    _pokemonRepository = pokemonRepository;// The injected object (pokemonRepository),Is stored in the private field (_pokemonRepository),So it can be used in all controller methods
                 }
+            
                     [HttpGet] //this helps in http get request
                     // reponse metadata 
                     // helps swagger /openapi , documents the response type 
