@@ -6,6 +6,8 @@
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/BackendApi.runtimeconfig.json
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/BackendApi.dll
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/BackendApi.pdb
+/workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/AutoMapper.dll
+/workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/Azure.Core.dll
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/Azure.Identity.dll
 /workspaces/WebApiDemo/BackendApi/bin/Debug/net10.0/Humanizer.dll

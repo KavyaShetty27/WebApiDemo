@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WEBAPIDEMO;
+using WEBAPIDEMO.Controllers;
 using WEBAPIDEMO.Data;
 using WEBAPIDEMO.Interfaces;
 using WEBAPIDEMO.Repository;
@@ -9,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
+builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
+builder.Services.AddScoped<ICountryRepository , CountryRepository>();
+builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
 builder.Services.AddTransient<Seed>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
