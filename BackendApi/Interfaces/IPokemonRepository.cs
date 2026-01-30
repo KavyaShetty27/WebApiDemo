@@ -19,6 +19,7 @@ Pokemon GetPokemon(int id );
  bool PokemonExists(int pokeId); // check if the pokemon exists in the database , before acting confirms its existence 
  bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon);
  bool DeletePokemon(Pokemon pokemon);
+ bool UpdatePokemon(int ownerId, int categoryId, Pokemon pokemon);
 Pokemon GetPokemonTrimToUpper(PokemonDto pokemonCreate);
 
  bool save();

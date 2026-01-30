@@ -58,15 +58,17 @@ namespace WEBAPIDEMO.Repository
         }
 public bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon)// creates a new pokemon and correctly link it to an owner and category
         { // if you have many to many relationsship you need to fetch the relationship before hand
+            // this is required bcoz EF core must track an existing owner entity b/f creating a realtionship
             var pokemonOwnerEntity = _context.Owners.Where(a => a.Id == ownerId).FirstOrDefault();// fetching the existent owner 
             var category = _context.Categories.Where(a => a.Id == categoryId).FirstOrDefault();// fetching the exisiting category 
             // when ever there is a relationship using joins then we need to efine it like this 
+            //creates a join table and this is required
             var PokemonOwner = new PokemonOwner()// this creates a pokemon owner relationship .this creates a join object 
             {
                 Owner = pokemonOwnerEntity,
                 Pokemon= pokemon,
             };
-
+                // tells ef core track this relationship and interst into join tabe during savchanges 
                 _context.Add(PokemonOwner);// add realtionship to the ef core , tracks the relationship and save it to the datbase 
                 var PokemonCategory = new PokemonCategory()
                 {
@@ -74,13 +76,15 @@ public bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon)// create
                     Pokemon= pokemon,
                 };
                 _context.Add(PokemonCategory);
+                // , registers the  actual pokemon entity ,all will be saved in one transaction
                 _context.Add(pokemon);
+                // calls the save method and returns true 
                 return save();
         }
         public bool save()
-        {
+        {               // executes the sql inserts stmt and returns the number of row affected 
             var saved = _context.SaveChanges();
-            return saved > 0 ? true :false;
+            return saved > 0 ? true :false; // if atelast one row was written then sucess 
         }
 
         
@@ -95,6 +99,11 @@ public bool CreatePokemon(int ownerId, int categoryId, Pokemon pokemon)// create
         {
            _context.Remove(pokemon);
            return save();
+        }
+            public bool UpdatePokemon(int ownerId, int categoryId, Pokemon pokemon)
+        {
+            _context.Update(pokemon);
+            return save();
         }
     }
 }
